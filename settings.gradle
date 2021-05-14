@@ -1,0 +1,3 @@
+include ':stackbarrotateview'
+include ':app'
+rootProject.name = "LinkedStackBarRotateView"
