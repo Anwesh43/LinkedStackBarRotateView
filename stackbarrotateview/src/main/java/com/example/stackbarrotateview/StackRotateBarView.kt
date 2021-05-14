@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.RectF
+import java.util.*
 
 val colors : Array<Int> = arrayOf(
     "#f44336",
@@ -207,6 +208,15 @@ class StackRotateBarView(ctx : Context) : View(ctx) {
             srb.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+
+        fun create(activity: Activity) : StackRotateBarView {
+            val view : StackRotateBarView = StackRotateBarView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
