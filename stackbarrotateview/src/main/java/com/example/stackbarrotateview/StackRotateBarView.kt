@@ -8,7 +8,7 @@ import android.graphics.Paint
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.RectF
-import java.util.*
+
 
 val colors : Array<Int> = arrayOf(
     "#f44336",
@@ -19,8 +19,8 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val bars : Int = 3
-val parts : Int = 1 + bars
+val bars : Int = 7
+val parts : Int = 2 + bars
 val scGap : Float = 0.02f / parts
 val recHFactor : Float = 3.9f
 val recWFactor : Float = 7.8f
@@ -44,9 +44,9 @@ fun Canvas.drawStackRotateBar(scale : Float, w : Float, h : Float, paint : Paint
     for (j in 0..(bars - 1)) {
         val sfj : Float = sf.divideScale(j + 1, parts)
         save()
-        translate(0f, rh / 2 + (h - rw / 2 - rh / 2) * sfj)
+        translate(0f, rh / 2 + (h - rw / 2 - (rw * j) - rh / 2) * sfj)
         rotate(rot * sfj)
-        drawRect(RectF(-rw / 2, -rh / 2, rw / 2, -rh / 2 + rh * sf1), paint)
+        drawRect(RectF(-rw / 2, -rh / 2, rw / 2, -rh / 2 + rh * sf.divideScale(j, parts)), paint)
         restore()
     }
     restore()
